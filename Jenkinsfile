@@ -19,6 +19,10 @@ node {
         // La configuration de la bdd est stoquée au format JSON
         String config = readFile "conf/bdd.conf"
 
+        echo user
+        echo database
+        echo password
+
         // La méthode replace renvoie une copie de la chaîne remplacée
         // d'où le config = config.replace()
         // https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#replace-java.lang.CharSequence-java.lang.CharSequence-
