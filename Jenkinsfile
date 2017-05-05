@@ -10,11 +10,7 @@ node {
     //
     // Vous remarquerez que la diffèrence avec l'exercice précédent est que l'on a variabilisé les credentialsId
     // ce qui a pour effet que l'on a le même script pour le job de production et d'intégration
-    withCredentials([
-        [$class: 'StringBinding', credentialsId: params.user, variable: 'user'],
-        [$class: 'StringBinding', credentialsId: params.database, variable: 'database'],
-        [$class: 'StringBinding', credentialsId: params.password, variable: 'password']
-    ]) {
+    withCredentials([string(credentialsId: 'prod_user', variable: 'user'), string(credentialsId: 'prod_password', variable: 'password'), string(credentialsId: 'prod_database', variable: 'database')]) {
         // On lit le contenu du fichier conf/bdd.conf
         // afin de pouvoir remplacer les valeurs null par celle de l'environement de production
         // La configuration de la bdd est stoquée au format JSON
