@@ -5,6 +5,9 @@ node {
     // Maintenant que notre workspace est propre on télécharge les sources du projet
     git "https://github.com/deather/jenkins-exercise-3.git"
 
+    echo params.user
+    echo params.database
+
     // On récupère les credentials que l'on a créé au préalable dans Jenkins (http://localhost:8080/credentials/)
     // Pour rappel l'avantage des credentials est de sécuriser et centraliser les données sensibles qui peuvent être contenues dans une application
     //
