@@ -18,14 +18,16 @@ node {
         // afin de pouvoir remplacer les valeurs null par celle de l'environement de production
         // La configuration de la bdd est stoquée au format JSON
         String config = readFile "conf/bdd.conf"
-        def configJson = new groovy.json.JsonSlurperClassic().parseText(config)
 
-        configJson.user = user
-        configJson.database = database
-        configJson.password = password
+        // La méthode replace renvoie une copie de la chaîne remplacée
+        // d'où le config = config.replace()
+        // https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#replace-java.lang.CharSequence-java.lang.CharSequence-
+        config = config.replace("[user]", user)
+        config = config.replace("[database]", database)
+        config = config.replace("[password]", password)
 
         // Maintenant que l'on a fait les modifications du json on les sauvegarde dans le fichier
-        writeFile file: "conf/bdd.conf", text: groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(configJson))
+        writeFile file: "conf/bdd.conf", text: configJson)
     }
 
     // On précise à jenkins d'archiver tous les fichiers qui sont dans conf/
