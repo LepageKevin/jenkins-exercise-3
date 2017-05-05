@@ -27,7 +27,7 @@ node {
         config = config.replace("[password]", password)
 
         // Maintenant que l'on a fait les modifications du json on les sauvegarde dans le fichier
-        writeFile file: "conf/bdd.conf", text: configJson
+        writeFile file: "conf/bdd.conf", text: config
     }
 
     // On précise à jenkins d'archiver tous les fichiers qui sont dans conf/
