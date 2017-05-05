@@ -3,10 +3,7 @@ node {
     cleanWs()
 
     // Maintenant que notre workspace est propre on télécharge les sources du projet
-    git "https://github.com/deather/jenkins-exercise-3.git"
-
-    echo params.user
-    echo params.database
+    git branch: 'solution', url: 'https://github.com/deather/jenkins-exercise-3.git'
 
     // On récupère les credentials que l'on a créé au préalable dans Jenkins (http://localhost:8080/credentials/)
     // Pour rappel l'avantage des credentials est de sécuriser et centraliser les données sensibles qui peuvent être contenues dans une application
@@ -18,11 +15,6 @@ node {
         // afin de pouvoir remplacer les valeurs null par celle de l'environement de production
         // La configuration de la bdd est stoquée au format JSON
         String config = readFile "conf/bdd.conf"
-
-        echo config
-        echo user
-        echo database
-        echo password
 
         // La méthode replace renvoie une copie de la chaîne remplacée
         // d'où le config = config.replace()
