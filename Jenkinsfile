@@ -19,6 +19,7 @@ node {
         // La configuration de la bdd est stoquée au format JSON
         String config = readFile "conf/bdd.conf"
 
+        echo config
         echo user
         echo database
         echo password
