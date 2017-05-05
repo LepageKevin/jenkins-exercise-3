@@ -5,15 +5,16 @@ node {
     // Maintenant que notre workspace est propre on télécharge les sources du projet
     git "https://github.com/deather/jenkins-exercise-3.git"
 
-    echo params.user
-    echo params.database
-
     // On récupère les credentials que l'on a créé au préalable dans Jenkins (http://localhost:8080/credentials/)
     // Pour rappel l'avantage des credentials est de sécuriser et centraliser les données sensibles qui peuvent être contenues dans une application
     //
     // Vous remarquerez que la diffèrence avec l'exercice précédent est que l'on a variabilisé les credentialsId
     // ce qui a pour effet que l'on a le même script pour le job de production et d'intégration
-    withCredentials([string(credentialsId: params.user, variable: 'user'), string(credentialsId: params.database, variable: 'database'), string(credentialsId: params.password, variable: 'password')]) {
+    withCredentials([
+        [$class: 'StringBinding', credentialsId: params.user, variable: 'user'],
+        [$class: 'StringBinding', credentialsId: params.database, variable: 'database'],
+        [$class: 'StringBinding', credentialsId: params.password, variable: 'password']
+    ]) {
         // On lit le contenu du fichier conf/bdd.conf
         // afin de pouvoir remplacer les valeurs null par celle de l'environement de production
         // La configuration de la bdd est stoquée au format JSON
