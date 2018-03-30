@@ -7,20 +7,20 @@ pipeline {
 
     stages {
 	    stage("Cleans") {
-	    	steps {
+	    	step {
 	        	// On clean le workspace
 	        	cleanWs()
 	        }
 	    }
 
 	    stage("Git") {
-	    	steps {
+	    	step {
 		        // On git clone
 		        git 'https://github.com/deather/jenkins-exercise-3'
 	        }
 	    }   
 	    stage("Integration") {
-	    	steps {
+	    	step {
 		        //Credentials
 		        withCredentials([
 		            string(credentialsId: 'user' + ${params.environnement}, variable: 'user'),
