@@ -23,9 +23,9 @@ pipeline {
 	    	steps {
 		        //Credentials
 		        withCredentials([
-		            string(credentialsId: 'user' + ${params.environnement}, variable: 'user'),
-		            string(credentialsId: 'database' + ${params.environnement}, variable: 'database'),
-		            string(credentialsId: 'password'+ ${params.environnement}, variable: 'password')]) {
+		            string(credentialsId: 'user' + params.environnement, variable: 'user'),
+		            string(credentialsId: 'database' + params.environnement, variable: 'database'),
+		            string(credentialsId: 'password'+ params.environnement, variable: 'password')]) {
 		                
 		            script {
 			            String configFile = readFile 'conf/bdd.conf'
