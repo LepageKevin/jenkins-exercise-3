@@ -40,5 +40,10 @@ pipeline {
 		        }
 		    }
 	    }
+	    stage("Stockage de la configuration modifiée") {
+	        // On précise à jenkins d'archiver tous les fichiers qui sont dans conf/
+	        // Vous pourrez retrouver l'archive sur la page du job pour vérifier que cela à bien fonctionné
+	        archiveArtifacts 'conf/*'
+	    }
     }
 }
